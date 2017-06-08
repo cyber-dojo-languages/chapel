@@ -1,0 +1,9 @@
+services: docker
+language: generic
+
+script:
+    - SCRIPT=run_build_image.sh
+    - curl -O https://raw.githubusercontent.com/cyber-dojo-languages/image_builder/master/${SCRIPT}
+    - chmod +x ./${SCRIPT}
+    - export REPO_URL=https://github.com/${TRAVIS_REPO_SLUG}
+    - ./${SCRIPT} ${PWD}
