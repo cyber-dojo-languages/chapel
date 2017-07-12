@@ -1,5 +1,5 @@
-FROM cyberdojofoundation/alpine_language_base:3.4
-MAINTAINER Brad Chamberlain <bradcray@gmail.com>
+FROM  cyberdojofoundation/alpine_language_base:3.4
+LABEL maintainer=bradcray@gmail.com
 
 USER root
 
