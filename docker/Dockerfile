@@ -1,4 +1,4 @@
-FROM  cyberdojofoundation/alpine_language_base:3.4
+FROM  cyberdojofoundation/alpine-language_base:3.6
 LABEL maintainer=bradcray@gmail.com
 
 USER root
