@@ -9,3 +9,6 @@ ADD install.sh /
 
 RUN /install.sh && \
     rm -f /install.sh
+
+COPY version.txt /tmp
+RUN chpl --version | grep -f /tmp/version.txt

@@ -13,4 +13,3 @@ mkdir -p /opt/chapel \
     && make -C ${CHPL_HOME} \
     && printchplenv --simple > ${CHPL_HOME}/.chplconfig"
 
-chpl --version | grep 1.16.0
