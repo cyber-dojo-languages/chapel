@@ -1,11 +1,21 @@
-FROM  cyberdojofoundation/alpine_glibc
+FROM cyberdojofoundation/alpine_glibc
 LABEL maintainer=bradcray@gmail.com
 
 ENV CHPL_VERSION 1.18.0
 ENV CHPL_HOME /opt/chapel/chapel-${CHPL_VERSION}
 ENV PATH ${PATH}:${CHPL_HOME}/bin/linux64:${CHPL_HOME}/util
 
-ADD install.sh /
-
-RUN /install.sh && \
-    rm -f /install.sh
+RUN \
+apk update && \
+apk add ca-certificates && \
+apk add bash gcc g++ make perl python wget && \
+\
+mkdir -p /opt/chapel && \
+wget -q -O - https://github.com/chapel-lang/chapel/releases/download/${CHPL_VERSION}/chapel-${CHPL_VERSION}.tar.gz | tar -xzC /opt/chapel && \
+\
+/bin/bash -c "source ${CHPL_HOME}/util/quickstart/setchplenv.bash && \
+cd /opt/chapel && \
+make -C ${CHPL_HOME} && \
+printchplenv --simple > ${CHPL_HOME}/.chplconfig" && \
+\
+apk del wget
