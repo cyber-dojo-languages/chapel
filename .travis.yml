@@ -2,8 +2,8 @@ services: docker
 language: bash
 
 script:
-    - SCRIPT=run_build_image.sh
+    - SCRIPT=build_test_push_notify.sh
     - curl -O https://raw.githubusercontent.com/cyber-dojo-languages/image_builder/master/${SCRIPT}
-    - chmod +x ./${SCRIPT}
-    - travis_retry ./${SCRIPT} ${PWD}
+    - chmod 700 ./${SCRIPT}
+    - travis_retry ./${SCRIPT}
     - ./check_version.sh
