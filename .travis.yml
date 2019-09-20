@@ -5,5 +5,6 @@ script:
     - SCRIPT=build_test_push_notify.sh
     - curl -O https://raw.githubusercontent.com/cyber-dojo-languages/image_builder/master/${SCRIPT}
     - chmod 700 ./${SCRIPT}
+    - echo "${DOCKER_PASSWORD}" | docker login --username "${DOCKER_USERNAME}" --password-stdin    
     - travis_retry ./${SCRIPT}
     - ./check_version.sh
