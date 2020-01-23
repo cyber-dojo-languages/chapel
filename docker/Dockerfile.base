@@ -6,7 +6,6 @@ ENV CHPL_HOME /opt/chapel/chapel-${CHPL_VERSION}
 ENV PATH ${PATH}:${CHPL_HOME}/bin/linux64-x86_64:${CHPL_HOME}/util
 
 RUN \
-apk update && \
 apk add ca-certificates && \
 apk add bash gcc g++ make perl python wget && \
 \

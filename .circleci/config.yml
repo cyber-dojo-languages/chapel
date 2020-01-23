@@ -1,31 +1,29 @@
 version: 2
 jobs:
   build-publish-trigger:
-
     machine:
-      enabled: true
-
-    working_directory: ~/repo
-
+      image: ubuntu-1604:201903-01
     steps:
       - checkout
       - run:
           name: Build image, test it, push it dockerhub, notify dependents
-          command: |
-            set -e
-            SCRIPT=build_test_push_notify.sh
-            curl -O --fail ${CIRCLECI_SCRIPT_DIR}/${SCRIPT}
-            chmod 700 ./${SCRIPT}
-            echo "${DOCKER_PASSWORD}" \
-              | docker login --username "${DOCKER_USERNAME}" --password-stdin
-            ./${SCRIPT}
+          command: ./pipe_build_up_test.sh
 
 workflows:
   version: 2
-  build-publish-trigger:
-    jobs:
-      - build-publish-trigger:
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
           filters:
             branches:
-              only:
-                  - master
+              only: [ master ]
+    jobs:
+      - build-publish-trigger
+  commit:
+    jobs:
+      - build-publish-trigger:
+          context: cyberdojo-languages-context
+          filters:
+            branches:
+              only: [ master ]
