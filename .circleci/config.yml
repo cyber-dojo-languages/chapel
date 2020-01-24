@@ -19,7 +19,11 @@ workflows:
             branches:
               only: [ master ]
     jobs:
-      - build-publish-trigger
+      - build-publish-trigger:
+          context: cyberdojo-languages-context
+          filters:
+            branches:
+              only: [ master ]
   commit:
     jobs:
       - build-publish-trigger:
