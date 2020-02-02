@@ -9,5 +9,5 @@ if echo "${ACTUAL}" | grep -q "${EXPECTED}"; then
 else
   echo "VERSION EXPECTED: ${EXPECTED}"
   echo "VERSION   ACTUAL: ${ACTUAL}"
-  exit 1
+  exit 42
 fi
