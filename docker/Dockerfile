@@ -13,12 +13,11 @@ RUN apk add --update coreutils bash tar file
 
 LABEL maintainer=bradcray@gmail.com
 
-ENV CHPL_VERSION 1.20.0
+ENV CHPL_VERSION 1.21.0
 ENV CHPL_HOME /opt/chapel/chapel-${CHPL_VERSION}
 ENV PATH ${PATH}:${CHPL_HOME}/bin/linux64-x86_64:${CHPL_HOME}/util
 
 RUN \
-apk update && \
 apk add ca-certificates && \
 apk add bash gcc g++ make perl python wget && \
 \
