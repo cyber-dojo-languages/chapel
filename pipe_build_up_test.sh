@@ -1,6 +1,6 @@
 #!/bin/bash -Eeu
 
-readonly MY_DIR="$( cd "$( dirname "${0}" )" && pwd )"
+readonly MY_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 readonly TMP_DIR="$(mktemp -d /tmp/cyber-dojo-image-builder.XXXXXXX)"
 remove_tmp_dir() { rm -rf "${TMP_DIR}" > /dev/null; }
 trap remove_tmp_dir INT EXIT
@@ -25,4 +25,4 @@ process_cdl_image_src_dir()
   fi
 }
 
-"$(process_cdl_image_src_dir)" "${MY_DIR}"
+"$(process_cdl_image_src_dir)" "${1:-${MY_DIR}}"

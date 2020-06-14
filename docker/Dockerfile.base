@@ -1,4 +1,4 @@
-FROM cyberdojofoundation/alpine_glibc
+FROM cyberdojofoundation/alpine_glibc:7becbb4
 LABEL maintainer=bradcray@gmail.com
 
 ENV CHPL_VERSION 1.22.0
